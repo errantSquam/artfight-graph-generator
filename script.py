@@ -10,6 +10,21 @@ import numpy as np
 from matplotlib.ticker import (MultipleLocator, AutoMinorLocator)
 
 
+# Edit as appropriate with your own colors, files and characters
+endpoint_day = 15
+color_palette = {
+    'Ekaitz': '#FF6347',  
+    'Valen': '#ffcb66',
+    'Orca': "#8da2ff",
+    'Arelis': '#dcc5f3',
+    'Ashaya': '#54ff80',
+    'Ordell': '#9b78ff'
+}
+markers = {
+    'Ekaitz': mpimg.imread('markers/ekaitzmarker.png'),
+}
+
+
 def writeBytes():
     buf = BytesIO()
     plt.savefig(buf, format='png')
@@ -52,7 +67,7 @@ def createGraph(endpoint_day, palette, markers):
     
     if endpoint_day < 7:
         ax.set_ylim(0.0, 7)
-        ax.set_xlim(1.0, 7.0)
+        ax.set_xlim(0.0, 7.0)
     
     ax.xaxis.grid(True, which='minor')
 
@@ -76,14 +91,15 @@ def createGraph(endpoint_day, palette, markers):
         if marker_img is not None:
             x = data['Day']
             y = data['Defences']
-            plt.plot(x, y, label=chara, color=color, clip_on = False)
+            plt.plot(x, y, label=chara, color=color, marker = "o", clip_on = False)
 
             marker_size = 0.7
             for xi, yi in zip(x, y):
-                plt.imshow(marker_img, extent=(xi-marker_size/2, xi+marker_size/2, yi-marker_size/2, yi+marker_size/2), aspect='equal', zorder=10, clip_on = False)
+                if xi == 0 or xi == endpoint_day or (xi > 0 and data['Defences'][xi] - data['Defences'][xi-1] != 0):
+                    plt.imshow(marker_img, extent=(xi-marker_size/2, xi+marker_size/2, yi-marker_size/2, yi+marker_size/2), aspect='equal', zorder=10, clip_on = False)
 
         else:
-            sns.lineplot(data=data, x='Day', y='Defences', label=chara, color=color)
+            sns.lineplot(data=data, x='Day', y='Defences', label=chara, color=color, marker = "o")
 
     plt.title('Artfight 2024 Defences')
     plt.xlabel('Day')
@@ -99,18 +115,5 @@ def createGraph(endpoint_day, palette, markers):
     plt.show()
 
 
-# Edit as appropriate
-endpoint_day = 1
-color_palette = {
-    'Ekaitz': '#FF6347',  
-    'Valen': '#ffcb66',
-    'Orca': "#8da2ff",
-    'Arelis': '#dcc5f3',
-    'Ashaya': '#54ff80',
-    'Ordell': '#9b78ff'
-}
-markers = {
-    'Ekaitz': mpimg.imread('markers/ekaitzmarker.png'),
-}
 
 createGraph(endpoint_day, color_palette, markers)
