@@ -11,7 +11,7 @@ from matplotlib.ticker import (MultipleLocator, AutoMinorLocator)
 
 
 # Edit as appropriate with your own colors, files and characters
-endpoint_day = 1
+endpoint_day = 31
 color_palette = {
     'Ekaitz': '#FF6347',  
     'Valen': '#ffcb66',
@@ -22,6 +22,11 @@ color_palette = {
 }
 markers = {
     'Ekaitz': mpimg.imread('markers/ekaitzmarker.png'),
+    'Valen': mpimg.imread('markers/valenmarker.png'),
+    'Orca': mpimg.imread('markers/orcamarker.png'),
+    'Arelis': mpimg.imread('markers/arelismarker.png'),
+    'Ashaya': mpimg.imread('markers/ashayamarker.png'),
+    'Ordell': mpimg.imread('markers/ordellmarker.png'),
 }
 
 
@@ -49,7 +54,7 @@ def createGraph(endpoint_day, palette, markers):
 
     df_filtered = df[df['Day'] <= endpoint_day]
 
-    df_cumsum = df_filtered.set_index('Day').cumsum().reset_index() # heh heh . . . cum
+    df_cumsum = df_filtered#.set_index('Day').cumsum().reset_index() # heh heh . . . cum
 
     df_melted = df_cumsum.melt(id_vars=['Day'], var_name='Character', value_name='Defences')
 
@@ -74,28 +79,37 @@ def createGraph(endpoint_day, palette, markers):
     
     ax.tick_params(which='both')
 
-    for chara in df_melted['Character'].unique():
+    for chara in df_melted['Character'].unique(): #write data normally
         data = df_melted[df_melted['Character'] == chara]
         
         color = color_palette.get(chara, '#000000')  
         marker_img = markers.get(chara)
-        
+
 
         
         if marker_img is not None:
             x = data['Day']
             y = data['Defences']
-            plt.plot(x, y, label=chara, color=color, marker = "o", clip_on = False)
-
-            marker_size = 0.7
-            for xi, yi in zip(x, y):
-                if xi == 0 or xi == endpoint_day or (xi > 0 and data['Defences'][xi] - data['Defences'][xi-1] != 0):
-                    plt.imshow(marker_img, extent=(xi-marker_size/2, xi+marker_size/2, yi-marker_size/2, yi+marker_size/2), aspect='equal', zorder=10, clip_on = False)
+            plt.plot(x, y, label=chara, color=color, marker = ".", clip_on = False)
 
         else:
-            sns.lineplot(data=data, x='Day', y='Defences', label=chara, color=color, marker = "o")
+            sns.lineplot(data=data, x='Day', y='Defences', label=chara, color=color, marker = ".")
 
-    plt.title('Artfight 2024 Defences')
+    for chara in np.flip(df_melted['Character'].unique()): # now for images 
+        data = df_melted[df_melted['Character'] == chara]
+        marker_img = markers.get(chara)
+        
+        
+        if marker_img is not None:
+            x = data['Day']
+            y = data['Defences']
+            marker_size = 0.7
+            for xi, yi in zip(x, y):
+                if xi == 0 or xi == endpoint_day or \
+                (xi > 0 and data['Defences'].iloc[xi] - data['Defences'].iloc[xi-1] != data['Defences'].iloc[xi] - data['Defences'].iloc[xi+1]):
+                    plt.imshow(marker_img, extent=(xi-marker_size/2, xi+marker_size/2, yi-marker_size/2, yi+marker_size/2), aspect='equal', zorder=10, clip_on = False)
+
+    plt.title('Artfight 2023 Defences')
     plt.xlabel('Day')
     plt.ylabel('# Defences')
     
