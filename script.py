@@ -54,7 +54,7 @@ def createGraph(endpoint_day, palette, markers):
 
     df_filtered = df[df['Day'] <= endpoint_day]
 
-    df_cumsum = df_filtered#.set_index('Day').cumsum().reset_index() # heh heh . . . cum
+    df_cumsum = df_filtered.set_index('Day').cumsum().reset_index() # heh heh . . . cum
 
     df_melted = df_cumsum.melt(id_vars=['Day'], var_name='Character', value_name='Defences')
 
