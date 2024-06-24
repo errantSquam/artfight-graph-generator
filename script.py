@@ -106,10 +106,10 @@ def createGraph(endpoint_day, palette, markers):
             marker_size = 0.7
             for xi, yi in zip(x, y):
                 if xi == 0 or xi == endpoint_day or \
-                (xi > 0 and data['Defences'].iloc[xi] - data['Defences'].iloc[xi-1] != data['Defences'].iloc[xi] - data['Defences'].iloc[xi+1]):
+                (xi > 0 and abs(data['Defences'].iloc[xi] - data['Defences'].iloc[xi-1]) != abs(data['Defences'].iloc[xi] - data['Defences'].iloc[xi+1])):
                     plt.imshow(marker_img, extent=(xi-marker_size/2, xi+marker_size/2, yi-marker_size/2, yi+marker_size/2), aspect='equal', zorder=10, clip_on = False)
 
-    plt.title('Artfight 2023 Defences')
+    plt.title('Artfight 2024 Defences')
     plt.xlabel('Day')
     plt.ylabel('# Defences')
     
