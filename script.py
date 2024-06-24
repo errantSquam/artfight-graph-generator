@@ -11,7 +11,7 @@ from matplotlib.ticker import (MultipleLocator, AutoMinorLocator)
 
 
 # Edit as appropriate with your own colors, files and characters
-endpoint_day = 15
+endpoint_day = 1
 color_palette = {
     'Ekaitz': '#FF6347',  
     'Valen': '#ffcb66',
@@ -65,7 +65,7 @@ def createGraph(endpoint_day, palette, markers):
     
     ax.xaxis.grid(True, which='minor')
 
-    ax.xaxis.set_major_locator(MultipleLocator(7))
+    ax.xaxis.set_major_locator(MultipleLocator(1))
     ax.yaxis.set_major_locator(MultipleLocator(1))
 
     ax.xaxis.set_minor_locator(MultipleLocator(1)) # not sure why this doesn't work lol >_>
