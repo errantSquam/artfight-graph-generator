@@ -49,21 +49,15 @@ def createGraph(endpoint_day, palette, markers):
 
     df_filtered = df[df['Day'] <= endpoint_day]
 
-    df_cumsum = df_filtered.set_index('Day').cumsum().reset_index()
+    df_cumsum = df_filtered.set_index('Day').cumsum().reset_index() # heh heh . . . cum
 
     df_melted = df_cumsum.melt(id_vars=['Day'], var_name='Character', value_name='Defences')
 
-    #print(df_melted)
-
-    
-    #plt.figure(figsize=(10, 6))
-    #sns.set(style="ticks", context="talk")
     sns.set_theme(rc={'figure.figsize':(10,5)})
 
     plt.style.use("cyberpunk")
 
     fig, ax = plt.subplots()
-    #fig = plt.figure(figsize=(20, 2))
     
     if endpoint_day < 7:
         ax.set_ylim(0.0, 7)
@@ -74,7 +68,7 @@ def createGraph(endpoint_day, palette, markers):
     ax.xaxis.set_major_locator(MultipleLocator(7))
     ax.yaxis.set_major_locator(MultipleLocator(1))
 
-    ax.xaxis.set_minor_locator(MultipleLocator(1))
+    ax.xaxis.set_minor_locator(MultipleLocator(1)) # not sure why this doesn't work lol >_>
     
 
     
