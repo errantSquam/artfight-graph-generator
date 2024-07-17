@@ -14,6 +14,10 @@ You may also add your own custom markers/portraits if you wish, otherwise the ma
 
 I'd love to implement scraping functionalities, but Artfight doesn't have an official API and I'm not sure if the servers can handle it. You'd also need a backend setup which is a bit more work.
 
+Example:
+
+![image](https://file.garden/ZovllhPbE2hYNtBE/output.png)
+
 ## IMPORTANT
 
 The license requires you to **credit and keep the code open source** if you do decide to fork this repo, so please respect that! 
