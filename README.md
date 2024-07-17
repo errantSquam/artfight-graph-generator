@@ -1,3 +1,5 @@
+To install Python requirements: ``pip install -r /path/to/requirements.txt``
+
 Hello! This is very simple source code for generating a pretty graph of your Artfight characters. 
 
 It's mostly manual and requires you to set up a .csv file with the following setup:
