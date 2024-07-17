@@ -14,7 +14,7 @@ Number of attacks per day is cumulative, so you don't have to do a re-count ever
 
 You may also add your own custom markers/portraits if you wish, otherwise the marker will default to a circle.
 
-I'd love to implement scraping functionalities, but Artfight doesn't have an official API and I'm not sure if the servers can handle it. You'd also need a backend setup which is a bit more work.
+I'd love to implement scraping functionalities, but Artfight doesn't have an official API and I'm not sure if the servers can handle it.
 
 Example:
 
