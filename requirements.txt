@@ -1,0 +1,5 @@
+matplotlib==3.8.2
+mplcyberpunk==0.7.1
+numpy==2.0.0
+pandas==2.2.2
+seaborn==0.13.2
