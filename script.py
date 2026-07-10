@@ -11,11 +11,10 @@ from matplotlib.ticker import (MultipleLocator, AutoMinorLocator)
 
 
 # Edit as appropriate with your own colors, files and characters
-endpoint_day = 31
+endpoint_day = 7
 color_palette = {
     'Ekaitz': '#FF6347',  
     'Valen': '#ffcb66',
-    'Orca': "#8da2ff",
     'Arelis': '#dcc5f3',
     'Ashaya': '#54ff80',
     'Ordell': '#9b78ff'
@@ -23,7 +22,6 @@ color_palette = {
 markers = {
     'Ekaitz': mpimg.imread('markers/ekaitzmarker.png'),
     'Valen': mpimg.imread('markers/valenmarker.png'),
-    'Orca': mpimg.imread('markers/orcamarker.png'),
     'Arelis': mpimg.imread('markers/arelismarker.png'),
     'Ashaya': mpimg.imread('markers/ashayamarker.png'),
     'Ordell': mpimg.imread('markers/ordellmarker.png'),
@@ -46,7 +44,7 @@ def writeBytes():
 
 
 def createGraph(endpoint_day, palette, markers):
-    df = pd.read_csv('artfight 2024 data.csv')
+    df = pd.read_csv('artfight 2026 data.csv',sep=',')
     
     
 
@@ -109,7 +107,7 @@ def createGraph(endpoint_day, palette, markers):
                 (xi > 0 and abs(data['Defences'].iloc[xi] - data['Defences'].iloc[xi-1]) != abs(data['Defences'].iloc[xi] - data['Defences'].iloc[xi+1])):
                     plt.imshow(marker_img, extent=(xi-marker_size/2, xi+marker_size/2, yi-marker_size/2, yi+marker_size/2), aspect='equal', zorder=10, clip_on = False)
 
-    plt.title('Artfight 2024 Defences')
+    plt.title('Artfight 2026 Defences')
     plt.xlabel('Day')
     plt.ylabel('# Defences')
     

@@ -1,4 +1,4 @@
-artfight 2024 data.csv
+*.csv
 output.txt
 output.png
 !.gitignore
